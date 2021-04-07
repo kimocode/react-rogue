@@ -18,9 +18,7 @@ class Entity {
             this.attributes.ascii, 
             this.x * this.size + (this.attributes.offset ? this.attributes.offset.x : 0), 
             this.y * this.size + (this.attributes.offset ? this.attributes.offset.y : 0)
-            );
-
-
+            ); 
     }
 }
 

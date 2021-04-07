@@ -26,6 +26,8 @@ const ReactRogue = ({width, height, tilesize}) => {
         newWorld.moveToSpace(world.player);
         let spawner = new Spawner(newWorld);
         spawner.spawnLoot(10);
+        spawner.spawnMonsters(6);
+        spawner.spawnStairs(); 
         setWorld(newWorld);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -49,11 +51,24 @@ const ReactRogue = ({width, height, tilesize}) => {
         // player.draw(ctx);
     });
     return (
-    <canvas 
-        ref={canvasRef}
-        width={width * tilesize} 
-        height={height * tilesize} 
-        style={{ border: '1px solid black', background: 'DimGray' }}
-    ></canvas>);
+      <>
+        <canvas
+          ref={canvasRef}
+          width={width * tilesize}
+          height={height * tilesize}
+          style={{ border: "1px solid black", background: "DimGray" }}
+        ></canvas>
+        <ul>
+          {world.player.inventory.map((item, index) => (
+            <li key={index}>{item.attributes.name}</li>
+          ))}
+        </ul>
+        <ul>
+          {world.history.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </>
+    );
 };
 export default ReactRogue;
